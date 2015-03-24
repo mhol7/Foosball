@@ -1,0 +1,30 @@
+FCX matchmaking system - Foosball of Casual Extremists 
+
+IT'S ONLY GAME WHY YOU HEF TO BE MAD
+
+1. Confirmation of games after one has post one
+
+2. Everything that is not 2v2 is unranked
+
+3. Ranking is based on win ratio (ELO?)
+
+4. Ranking is currently solo 
+
+5. A user can:		Create a gameLog that requests confirmation from the listed players (every 5 mins)
+					Confirm a gameLog
+					View rankings and user's gameLog history
+
+6. Rankings:		Sorting options.
+
+7. A non-user can: 	Register
+					View rankings and user's gameLog history
+				
+8. A moderator can:	Ban a user from competitive playing by revoking their right of approving  or creating gameLogs
+					Bruce-Confirm a gameLog
+					View rankings and user's gameLog history
+					
+
+					
+
+					
+					
