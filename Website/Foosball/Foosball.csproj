@@ -180,7 +180,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FoosballClasses\Administrator.cs" />
-    <Compile Include="Models\FoosballClasses\Elo.cs" />
     <Compile Include="Models\FoosballClasses\Match.cs" />
     <Compile Include="Models\FoosballClasses\Player.cs" />
     <Compile Include="Models\IdentityModels.cs" />

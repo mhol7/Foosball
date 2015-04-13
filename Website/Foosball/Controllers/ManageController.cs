@@ -7,6 +7,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Foosball.Models;
+using Foosball.Models.FoosballClasses;
+using Foosball.Models.Repositories;
+using StudentCatalogMVC.Models.Repositories;
 
 namespace Foosball.Controllers
 {
@@ -16,8 +19,11 @@ namespace Foosball.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
+        private IGenericRepository<Player> _playerRepository;
+
+        public ManageController(IGenericRepository<Player> repository)
         {
+            _playerRepository = repository;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -32,9 +38,9 @@ namespace Foosball.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -64,13 +70,15 @@ namespace Foosball.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            int elo = _playerRepository.FindById(userId).EloPoints;
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                PlayerElo =  elo
             };
             return View(model);
         }
@@ -331,7 +339,7 @@ namespace Foosball.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +390,6 @@ namespace Foosball.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
