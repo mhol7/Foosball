@@ -25,22 +25,23 @@ namespace Foosball.Models.FoosballClasses
 
         public void EloAlarm()
         {
-            if (!IsConfirmed)return;
-            
+            if (!IsConfirmed) return;
+
             int team1Elo = 0;
 
             int team2Elo = 0;
 
             for (int i = 0; i < Players.Length / 2; i++)
             {
-                team1Elo += Players[i].EloPoints;
-                team2Elo += Players[Players.Length - i - 1].EloPoints;
+                team1Elo += Players[i].EloPoints / 2;
+                team2Elo += Players[Players.Length - i - 1].EloPoints / 2;
             }
-            for (int i = 0; i < Players.Length; i++)
+            for (int i = 0; i < Players.Length / 2; i++)
             {
-                Players[i].CalculateElo(i < Players.Length / 2 ? team2Elo : team1Elo);
+                Players[i].CalculateEloWin(team2Elo);
+                Players[Players.Length - i - 1].CalculateEloLose(team1Elo);
             }
         }
     }
-    
+
 }
