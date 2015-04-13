@@ -23,6 +23,7 @@ namespace Foosball.Models
     {
 
         public DbSet<Match> Matches { get; set; }
+        public DbSet<Player> Players { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

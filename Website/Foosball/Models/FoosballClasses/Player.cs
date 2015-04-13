@@ -12,7 +12,7 @@ namespace Foosball.Models.FoosballClasses
 
         [Key]
         [ForeignKey("AspNetUsers")]
-        public int AspNetUserId { get; set; }
+        public string AspNetUserId { get; set; }
 
 
         public Elo PlayerElo { get; set; }
