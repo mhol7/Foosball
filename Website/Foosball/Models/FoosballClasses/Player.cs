@@ -6,7 +6,7 @@ namespace Foosball.Models.FoosballClasses
 {
     public class Player
     {
-        public const int Elophant = 50;
+        public const int Elophant = 32;
         public Player()
         {
         }
@@ -35,16 +35,14 @@ namespace Foosball.Models.FoosballClasses
 
         public int EloChange(int averageElo, bool isVictory)
         {
-            int res = (int)(ChanceToWin(averageElo) * Elophant);
+            int res = (int)Math.Round(ChanceToWin(averageElo) * Elophant);
             return isVictory ? Elophant - res : res;
         }
 
         public double ChanceToWin(int averageElo)
         {
-            if (averageElo == EloPoints) return 0.5;
-            double res = 1 / (1 + 10 * (
-                    Math.Abs(averageElo - (double)EloPoints)) / 400);
-            return MeBetter(averageElo) ? 1 - res : res;
+            return 1 / (1 + Math.Pow(10.0, (averageElo - (double)EloPoints) / 400));
+           
         }
 
         bool MeBetter(int opponentElo)
