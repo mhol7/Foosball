@@ -26,5 +26,13 @@ namespace Foosball.Controllers
 
             return View();
         }
+
+        public ActionResult CreateMatch()
+        {
+            ViewBag.Message = "CreateMatch";
+
+            return View();
+        }
+
     }
 }

@@ -23,6 +23,21 @@ namespace Foosball.Models.FoosballClasses
         public virtual ApplicationUser ApplicationUser { get; set; }
         public int EloPoints { get; set; }
 
+        
+        //Count declines in a row. if (count > 3) -> notify admin.
+        // declinesCount, Inotify
+        public int declinesCount = 0;
+        public bool bann = false;
+        public void BannUser(int UserId)
+        {
+            if (declinesCount >= 3)
+            {
+                //bann = cant be a part of a match ---> View assert if(bann = true) { player = inactiv }
+                bann = true;
+            }
+        }
+        
+
 
         public void CalculateEloWin(int averageElo)
         {

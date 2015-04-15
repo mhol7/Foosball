@@ -88,8 +88,5 @@ namespace Foosball.Models.FoosballClasses
 
             Assert.AreEqual(1475, player.EloPoints);
         }
-
-
-
     }
 }
