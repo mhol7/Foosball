@@ -1,19 +1,19 @@
-﻿using System;
-using Foosball.Models.FoosballClasses;
+﻿using Foosball.Models.FoosballClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Foosball.Models.FoosballClasses
+namespace Foosball.Tests.Models.FoosballClasses
 {
     [TestClass]
     public class PlayerTest
     {
+        
         [TestMethod]
         public void TestWinLowChance()
         {
             int opponentElo = 1600;
             Player player = new Player { EloPoints = 1400 };
 
-            Assert.AreEqual(16.6, player.ChanceToWin(opponentElo) * 100, 1);
+            Assert.AreEqual(24, player.ChanceToWin(opponentElo) * 100, 1);
         }
         [TestMethod]
         public void TestWinHighChance()
@@ -21,7 +21,7 @@ namespace Foosball.Models.FoosballClasses
             int opponentElo = 1400;
             Player player = new Player { EloPoints = 1600 };
 
-            Assert.AreEqual(83, player.ChanceToWin(opponentElo) * 100, 1);
+            Assert.AreEqual(76, player.ChanceToWin(opponentElo) * 100, 1);
         }
         [TestMethod]
         public void TestWinEqualChance()
@@ -40,7 +40,7 @@ namespace Foosball.Models.FoosballClasses
             Player player = new Player { EloPoints = 1600 };
             player.CalculateEloWin(opponentElo);
 
-            Assert.AreEqual(1609, player.EloPoints);
+            Assert.AreEqual(1608, player.EloPoints);
         }
         [TestMethod]
         public void TestMuchEloWin()
@@ -49,7 +49,7 @@ namespace Foosball.Models.FoosballClasses
             Player player = new Player { EloPoints = 1400 };
             player.CalculateEloWin(opponentElo);
 
-            Assert.AreEqual(1442, player.EloPoints);
+            Assert.AreEqual(1424, player.EloPoints);
         }
         [TestMethod]
         public void TestEqualEloWin()
@@ -58,7 +58,7 @@ namespace Foosball.Models.FoosballClasses
             Player player = new Player { EloPoints = 1400 };
             player.CalculateEloWin(opponentElo);
 
-            Assert.AreEqual(1425, player.EloPoints);
+            Assert.AreEqual(1416, player.EloPoints);
         }
 
         [TestMethod]
@@ -77,7 +77,7 @@ namespace Foosball.Models.FoosballClasses
             Player player = new Player { EloPoints = 1600 };
             player.CalculateEloLose(opponentElo);
 
-            Assert.AreEqual(1559, player.EloPoints);
+            Assert.AreEqual(1576, player.EloPoints);
         }
         [TestMethod]
         public void TestEqualEloLose()
@@ -86,7 +86,7 @@ namespace Foosball.Models.FoosballClasses
             Player player = new Player { EloPoints = 1500 };
             player.CalculateEloLose(opponentElo);
 
-            Assert.AreEqual(1475, player.EloPoints);
+            Assert.AreEqual(1484, player.EloPoints);
         }
     }
 }
