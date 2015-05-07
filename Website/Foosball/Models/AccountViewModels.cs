@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Foosball.Models.FoosballModels;
 
 namespace Foosball.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -49,8 +50,9 @@ namespace Foosball.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Username")]
-        public string Username{ get; set; }
+        [Display(Name = "Email")]
+        [EmailAddress]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -63,13 +65,6 @@ namespace Foosball.Models
 
     public class RegisterViewModel
     {
-
-        [Required]
-        [StringLength(12, MinimumLength = 4)]
-        [RegularExpression(@"(\S)+", ErrorMessage = "White space is not allowed")]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
-
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -86,6 +81,19 @@ namespace Foosball.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        /* private Player _player;
+         public Player Player
+         {
+             get { return _player ?? new Player(); }
+             set { _player = value; }
+         }*/
+
+        public Player Player { get; set; }
+
+        public RegisterViewModel()
+        {
+            Player = new Player();
+        }
     }
 
     public class ResetPasswordViewModel
