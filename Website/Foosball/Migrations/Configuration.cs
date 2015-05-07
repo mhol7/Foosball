@@ -1,3 +1,5 @@
+using Foosball.DAL;
+
 namespace Foosball.Migrations
 {
     using System;
@@ -5,15 +7,14 @@ namespace Foosball.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Foosball.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FoosballDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "Foosball.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Foosball.Models.ApplicationDbContext context)
+        protected override void Seed(FoosballDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
